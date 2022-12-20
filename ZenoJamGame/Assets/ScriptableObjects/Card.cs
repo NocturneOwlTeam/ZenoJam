@@ -11,4 +11,21 @@ public class Card : ScriptableObject
     public string description;
 
     public Sprite spriteImage;
+
+    public void LoadCard(CardData loadedCard)
+    {
+        cardName = loadedCard.cardName;
+        spriteImage = loadedCard.spriteImage;
+        description= loadedCard.description;
+    }
+}
+
+[SerializeField]
+public class CardData
+{
+    public string cardName;
+
+    public string description;
+
+    public Sprite spriteImage;
 }
