@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
+[CreateAssetMenu(fileName ="Carta", menuName ="Carta Nueva")]
 public class Card : ScriptableObject
 {
     public string cardName;
