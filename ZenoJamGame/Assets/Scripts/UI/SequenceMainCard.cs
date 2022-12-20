@@ -52,7 +52,7 @@ public class SequenceMainCard : MonoBehaviour
 
     public void HideCardsExcluted()
     {
-        StartCoroutine(ShowSequenceExcluted(currentIndex));
+        StartCoroutine(ShowSequence());
     }
 
     IEnumerator ShowSequence()
@@ -63,20 +63,6 @@ public class SequenceMainCard : MonoBehaviour
             yield return Helpers.GetWait(delayBetween);
         }
     }
-
-    IEnumerator ShowSequenceExcluted(int index)
-    {
-        for (var i = 0; i < cards.Length; i++)
-        {
-            if(index == i)
-            {
-                continue;
-            }
-            cards[i].DOAnchorPosY(0f, time).SetEase(Ease.OutQuart);
-            yield return Helpers.GetWait(delayBetween);
-        }
-    }
-
     IEnumerator HideSequence()
     {
         for (var i = 0; i < cards.Length; i++)
@@ -92,9 +78,13 @@ public class SequenceMainCard : MonoBehaviour
         {
             if (index == i)
             {
-                continue;
+                cards[i].DOAnchorPosY(1200f, time).SetEase(Ease.InQuart);
             }
-            cards[i].DOAnchorPosY(-1200f, time).SetEase(Ease.InQuart);
+            else
+            {
+                cards[i].DOAnchorPosY(-1200f, time).SetEase(Ease.InQuart);
+            }
+            
             yield return Helpers.GetWait(delayBetween);
         }
     }
