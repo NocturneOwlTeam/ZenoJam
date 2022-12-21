@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
@@ -14,21 +15,40 @@ public class Scoreboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scores = new int[5];
-
+        //Dummy data
+        scores = new int[5] { 100,20,30,41,311};
+        //scores = new int[5];
         LoadScoreboard();
     }
 
     public void LoadScoreboard()
     {
         StringBuilder text = new StringBuilder();
-        text.Append("Scoreboard:");
-
-        //text.AppendLine
+        Array.Sort(scores);
+        text.AppendLine("Scoreboard:");
+        int point = 1;
+        for(int i = scores.Length - 1; i >= 0; i--)
+        {
+            text.AppendLine($"{point}° - {scores[i]}");
+            point++;
+        }
+        scoreBoard.text = text.ToString();
     }
 
     public void UpdateScoreBoard(int newScore)
     {
+        Array.Sort(scores);
+        bool canBeUpdated = false;
+        for (int i = 0; i < scores.Length; i++)
+        {
+            if (!canBeUpdated)
+            {
 
+            }
+            else
+            {
+
+            }
+        }
     }
 }
