@@ -10,24 +10,24 @@ public class Scoreboard : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI scoreBoard;
 
-    int[] scores;
+    List<int> scores;
 
-    // Start is called before the first frame update
     void Start()
     {
         //Dummy data
-        scores = new int[5] { 100,20,30,41,311};
-        //scores = new int[5];
+        scores = new List<int> { 0,0,0,0,0};
+        //scores = new List<int>();
         LoadScoreboard();
     }
 
     public void LoadScoreboard()
     {
         StringBuilder text = new StringBuilder();
-        Array.Sort(scores);
+        scores.Sort();
+        scores.Reverse();
         text.AppendLine("Scoreboard:");
         int point = 1;
-        for(int i = scores.Length - 1; i >= 0; i--)
+        for(int i = 0; i < scores.Count; i++)
         {
             text.AppendLine($"{point}° - {scores[i]}");
             point++;
@@ -37,18 +37,10 @@ public class Scoreboard : MonoBehaviour
 
     public void UpdateScoreBoard(int newScore)
     {
-        Array.Sort(scores);
-        bool canBeUpdated = false;
-        for (int i = 0; i < scores.Length; i++)
-        {
-            if (!canBeUpdated)
-            {
-
-            }
-            else
-            {
-
-            }
-        }
+        scores.Add(newScore);
+        scores.Sort();
+        scores.Reverse();
+        scores.RemoveAt(scores.Count- 1);
+        LoadScoreboard();
     }
 }
